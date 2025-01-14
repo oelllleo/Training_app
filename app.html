@@ -74,95 +74,96 @@
 <div class="countdown-page" id="countdownPage"></div>
 
 <script>
-    const trainingData = {
+        const trainingData = {
         1: [
-            [1, "Chest (胸部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [1, "Chest (胸部)", "槓鈴臥推", "4 組", "6-8 次"],
-            [1, "Chest (胸部)", "啞鈴飛鳥", "4 組", "10-12 次"],
-            [1, "Chest (胸部)", "坐姿器械推胸", "3 組", "8-10 次"],
-            [1, "Chest (胸部)", "繩索下壓", "3 組", "10-12 次"],
-            [1, "Chest (胸部)", "啞鈴傾斜臥推", "3 組", "8-10 次"],
-            [1, "Chest (胸部)", "胸部夾擊", "3 組", "10-12 次"],
-            [1, "Chest (胸部)", "掉重組：槓鈴臥推", "1 組", "6-8 次，減重20% 1 組 x 8-10 次"],
-            [1, "Chest (胸部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [1, "Chest (胸部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [1, "Chest (胸部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [1, "Chest (胸部)", "有氧運動", "", "30分鐘"]
+            [1, "Chest (胸部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [1, "Chest (胸部)", "槓鈴臥推", "4", "6-8 次"],
+            [1, "Chest (胸部)", "啞鈴飛鳥", "4", "10-12 次"],
+            [1, "Chest (胸部)", "坐姿器械推胸", "3", "8-10 次"],
+            [1, "Chest (胸部)", "繩索下壓", "3", "10-12 次"],
+            [1, "Chest (胸部)", "啞鈴傾斜臥推", "3", "8-10 次"],
+            [1, "Chest (胸部)", "胸部夾擊", "3", "10-12 次"],
+            [1, "Chest (胸部)", "掉重組：槓鈴臥推", "1", "6-8 次，減重20% 1 x 8-10 次"],
+            [1, "Chest (胸部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [1, "Chest (胸部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [1, "Chest (胸部)", "懸垂抬腿", "3", "10-12 次"],
+            [1, "Chest (胸部)", "有氧運動","1", "30分鐘"]
         ],
         2: [
-            [2, "Back (背部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [2, "Back (背部)", "T-bar 划船", "4 組", "8-10 次"],
-            [2, "Back (背部)", "拉力器下拉", "4 組", "10-12 次"],
-            [2, "Back (背部)", "槓鈴划船", "3 組", "8-10 次"],
-            [2, "Back (背部)", "反向飛鳥", "3 組", "10-12 次"],
-            [2, "Back (背部)", "掉重組：T-bar 划船", "1 組", "8-10 次，減重20% 1 組 x 10-12 次"],
-            [2, "Back (背部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [2, "Back (背部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [2, "Back (背部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [2, "Back (背部)", "有氧運動", "", "30分鐘"]
+            [2, "Back (背部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [2, "Back (背部)", "T-bar 划船", "4", "8-10 次"],
+            [2, "Back (背部)", "拉力器下拉", "4", "10-12 次"],
+            [2, "Back (背部)", "槓鈴划船", "3", "8-10 次"],
+            [2, "Back (背部)", "反向飛鳥", "3", "10-12 次"],
+            [2, "Back (背部)", "掉重組：T-bar 划船", "1", "8-10 次，減重20% 1 x 10-12 次"],
+            [2, "Back (背部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [2, "Back (背部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [2, "Back (背部)", "懸垂抬腿", "3", "10-12 次"],
+            [2, "Back (背部)", "有氧運動","1", "30分鐘"]
         ],
         3: [
-            [3, "Arms & Shoulders (手臂與肩部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [3, "Arms & Shoulders (手臂與肩部)", "槓鈴肩推", "4 組", "8-10 次"],
-            [3, "Arms & Shoulders (手臂與肩部)", "啞鈴側平舉", "4 組", "10-12 次"],
-            [3, "Arms & Shoulders (手臂與肩部)", "啞鈴交替彎舉", "3 組", "8-10 次"],
-            [3, "Arms & Shoulders (手臂與肩部)", "繩索三頭肌下壓", "3 組", "10-12 次"],
-            [3, "Arms & Shoulders (手臂與肩部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [3, "Arms & Shoulders (手臂與肩部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [3, "Arms & Shoulders (手臂與肩部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [3, "Arms & Shoulders (手臂與肩部)", "有氧運動", "", "30分鐘"]
+            [3, "Arms & Shoulders (手臂與肩部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [3, "Arms & Shoulders (手臂與肩部)", "槓鈴肩推", "4", "8-10 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "啞鈴側平舉", "4", "10-12 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "啞鈴交替彎舉", "3", "8-10 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "繩索三頭肌下壓", "3", "10-12 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [3, "Arms & Shoulders (手臂與肩部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "懸垂抬腿", "3", "10-12 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "有氧運動","1", "30分鐘"]
         ],
         4: [
-            [4, "Legs (腿部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [4, "Legs (腿部)", "槓鈴深蹲", "4 組", "8-10 次"],
-            [4, "Legs (腿部)", "腿舉機", "4 組", "10-12 次"],
-            [4, "Legs (腿部)", "腿彎舉", "3 組", "10-12 次"],
-            [4, "Legs (腿部)", "股肌訓練", "3 組", "10-12 次"],
-            [4, "Legs (腿部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [4, "Legs (腿部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [4, "Legs (腿部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [4, "Legs (腿部)", "有氧運動", "", "30分鐘"]
+            [4, "Legs (腿部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [4, "Legs (腿部)", "槓鈴深蹲", "4", "8-10 次"],
+            [4, "Legs (腿部)", "腿舉機", "4", "10-12 次"],
+            [4, "Legs (腿部)", "腿彎舉", "3", "10-12 次"],
+            [4, "Legs (腿部)", "股肌訓練", "3", "10-12 次"],
+            [4, "Legs (腿部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [4, "Legs (腿部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [4, "Legs (腿部)", "懸垂抬腿", "3", "10-12 次"],
+            [4, "Legs (腿部)", "有氧運動","1", "30分鐘"]
         ],
         5: [
-            [5, "Chest (胸部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [5, "Chest (胸部)", "槓鈴臥推", "4 組", "6-8 次"],
-            [5, "Chest (胸部)", "啞鈴飛鳥", "4 組", "10-12 次"],
-            [5, "Chest (胸部)", "坐姿器械推胸", "3 組", "8-10 次"],
-            [5, "Chest (胸部)", "繩索下壓", "3 組", "10-12 次"],
-            [5, "Chest (胸部)", "啞鈴傾斜臥推", "3 組", "8-10 次"],
-            [5, "Chest (胸部)", "胸部夾擊", "3 組", "10-12 次"],
-            [5, "Chest (胸部)", "掉重組：槓鈴臥推", "1 組", "6-8 次，減重20% 1 組 x 8-10 次"],
-            [5, "Chest (胸部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [5, "Chest (胸部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [5, "Chest (胸部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [5, "Chest (胸部)", "有氧運動", "", "30分鐘"]
+            [5, "Chest (胸部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [5, "Chest (胸部)", "槓鈴臥推", "4", "6-8 次"],
+            [5, "Chest (胸部)", "啞鈴飛鳥", "4", "10-12 次"],
+            [5, "Chest (胸部)", "坐姿器械推胸", "3", "8-10 次"],
+            [5, "Chest (胸部)", "繩索下壓", "3", "10-12 次"],
+            [5, "Chest (胸部)", "啞鈴傾斜臥推", "3", "8-10 次"],
+            [5, "Chest (胸部)", "胸部夾擊", "3", "10-12 次"],
+            [5, "Chest (胸部)", "掉重組：槓鈴臥推", "1", "6-8 次，減重20% 1 x 8-10 次"],
+            [5, "Chest (胸部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [5, "Chest (胸部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [5, "Chest (胸部)", "懸垂抬腿", "3", "10-12 次"],
+            [5, "Chest (胸部)", "有氧運動","1", "30分鐘"]
         ],
         6: [
-            [6, "Back (背部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [6, "Back (背部)", "T-bar 划船", "4 組", "8-10 次"],
-            [6, "Back (背部)", "拉力器下拉", "4 組", "10-12 次"],
-            [6, "Back (背部)", "槓鈴划船", "3 組", "8-10 次"],
-            [6, "Back (背部)", "反向飛鳥", "3 組", "10-12 次"],
-            [6, "Back (背部)", "掉重組：T-bar 划船", "1 組", "8-10 次，減重20% 1 組 x 10-12 次"],
-            [6, "Back (背部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [6, "Back (背部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [6, "Back (背部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [6, "Back (背部)", "有氧運動", "", "30分鐘"]
+            [6, "Back (背部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [6, "Back (背部)", "T-bar 划船", "4", "8-10 次"],
+            [6, "Back (背部)", "拉力器下拉", "4", "10-12 次"],
+            [6, "Back (背部)", "槓鈴划船", "3", "8-10 次"],
+            [6, "Back (背部)", "反向飛鳥", "3", "10-12 次"],
+            [6, "Back (背部)", "掉重組：T-bar 划船", "1", "8-10 次，減重20% 1 x 10-12 次"],
+            [6, "Back (背部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [6, "Back (背部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [6, "Back (背部)", "懸垂抬腿", "3", "10-12 次"],
+            [6, "Back (背部)", "有氧運動","1", "30分鐘"]
         ],
         7: [
-            [7, "Arms & Shoulders (手臂與肩部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
-            [7, "Arms & Shoulders (手臂與肩部)", "槓鈴肩推", "4 組", "8-10 次"],
-            [7, "Arms & Shoulders (手臂與肩部)", "啞鈱側平舉", "4 組", "10-12 次"],
-            [7, "Arms & Shoulders (手臂與肩部)", "啞鈴交替彎舉", "3 組", "8-10 次"],
-            [7, "Arms & Shoulders (手臂與肩部)", "繩索三頭肌下壓", "3 組", "10-12 次"],
-            [7, "Arms & Shoulders (手臂與肩部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
-            [7, "Arms & Shoulders (手臂與肩部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
-            [7, "Arms & Shoulders (手臂與肩部)", "懸垂抬腿", "3 組", "10-12 次"],
-            [7, "Arms & Shoulders (手臂與肩部)", "有氧運動", "", "30分鐘"]
+            [7, "Arms & Shoulders (手臂與肩部)", "熱身：5-10分鐘的輕有氧運動","1","1"],
+            [7, "Arms & Shoulders (手臂與肩部)", "槓鈴肩推", "4", "8-10 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "啞鈱側平舉", "4", "10-12 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "啞鈴交替彎舉", "3", "8-10 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "繩索三頭肌下壓", "3", "10-12 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "橫腹肌訓練：平板支撐", "3", "30-60 秒"],
+            [7, "Arms & Shoulders (手臂與肩部)", "下腹訓練：反向捲腹", "3", "12-15 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "懸垂抬腿", "3", "10-12 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "有氧運動","1", "30分鐘"]
         ]
     };
 
-    let currentIndex = 0;
+    let currentIndex = 0; // Track the current training item
+    let currentSetIndex = 0; // Track the current set index
     let countdownInterval; // Variable to hold the countdown interval
     let selectedTrainingData = []; // To hold the selected day's training data
 
@@ -175,6 +176,7 @@
             const selectedDay = parseInt(document.getElementById('trainingDay').value, 10);
             selectedTrainingData = trainingData[selectedDay]; // Get training data for the selected day
             currentIndex = 0; // Start from the first item
+            currentSetIndex = 0; // Reset set index
             showTraining(); // Show the first training item
             welcomePage.style.display = 'none';
             trainingCard.style.display = 'block';
@@ -192,18 +194,27 @@
         }
 
         const row = selectedTrainingData[currentIndex];
-        trainingCard.innerHTML = `
-            <h2>${row[1]}</h2>
-            <p><strong>Weekday:</strong> ${row[0]}</p>
-            <p><strong>訓練內容:</strong> ${row[2]}</p>
-            <p><strong>動作:</strong> ${row[3]}</p>
-            <p><strong>組數:</strong> ${row[4]}</p>
-            <label for="inputSeconds">Countdown Seconds:</label>
-            <input type="number" id="inputSeconds" min="1" value="60">
-            <button class="btn btn-next">Next</button>
-        `;
-        countdownPage.style.display = 'none'; // Ensure countdown page is hidden
-        trainingCard.style.display = 'block'; // Show training card
+        const sets = parseInt(row[3]); // Get the number of sets
+
+        if (currentSetIndex < sets) {
+            trainingCard.innerHTML = `
+                <h2>${row[1]} - Set ${currentSetIndex + 1}</h2>
+                <p><strong>Weekday:</strong> ${row[0]}</p>
+                <p><strong>訓練內容:</strong> ${row[2]}</p>
+                <p><strong>動作:</strong> ${row[3]}</p>
+                <p><strong>組數:</strong> ${row[4]}</p>
+                <label for="inputSeconds">Countdown Seconds:</label>
+                <input type="number" id="inputSeconds" min="1" value="60">
+                <button class="btn btn-next">Next</button>
+            `;
+            countdownPage.style.display = 'none'; // Ensure countdown page is hidden
+            trainingCard.style.display = 'block'; // Show training card
+        } else {
+            // Move to the next training item
+            currentIndex++;
+            currentSetIndex = 0; // Reset set index for the next training item
+            showTraining(); // Show the next training item
+        }
     }
 
     function showCountdown(seconds) {
@@ -223,8 +234,8 @@
             countdownDisplay.textContent = seconds;
             if (seconds <= 0) {
                 clearInterval(countdownInterval);
-                currentIndex++; // Move to the next training item
-                showTraining(); // Show the next training item
+                currentSetIndex++; // Move to the next set
+                showTraining(); // Show the next training set
             }
         }, 1000);
     }
