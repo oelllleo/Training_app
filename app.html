@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome {
+            text-align: center;
+        }
+
+        .card {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            max-width: 80%;
+            width: 400px; /* Set a fixed width for the card */
+        }
+
+        .countdown-page {
+            display: none;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 90%; /* Adjust the width for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="welcome" id="welcomePage">
+    <h2>Welcome to the Training App</h2>
+    <label for="trainingDay">Select Training Day:</label>
+    <select id="trainingDay">
+        <option value="1">Day 1</option>
+        <option value="2">Day 2</option>
+        <option value="3">Day 3</option>
+        <option value="4">Day 4</option>
+        <option value="5">Day 5</option>
+        <option value="6">Day 6</option>
+        <option value="7">Day 7</option>
+    </select>
+    <br>
+    <button class="btn btn-start">Start Training</button>
+</div>
+
+<div class="card" id="trainingCard"></div>
+<div class="countdown-page" id="countdownPage"></div>
+
+<script>
+    const trainingData = {
+        1: [
+            [1, "Chest (胸部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [1, "Chest (胸部)", "槓鈴臥推", "4 組", "6-8 次"],
+            [1, "Chest (胸部)", "啞鈴飛鳥", "4 組", "10-12 次"],
+            [1, "Chest (胸部)", "坐姿器械推胸", "3 組", "8-10 次"],
+            [1, "Chest (胸部)", "繩索下壓", "3 組", "10-12 次"],
+            [1, "Chest (胸部)", "啞鈴傾斜臥推", "3 組", "8-10 次"],
+            [1, "Chest (胸部)", "胸部夾擊", "3 組", "10-12 次"],
+            [1, "Chest (胸部)", "掉重組：槓鈴臥推", "1 組", "6-8 次，減重20% 1 組 x 8-10 次"],
+            [1, "Chest (胸部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [1, "Chest (胸部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [1, "Chest (胸部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [1, "Chest (胸部)", "有氧運動", "", "30分鐘"]
+        ],
+        2: [
+            [2, "Back (背部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [2, "Back (背部)", "T-bar 划船", "4 組", "8-10 次"],
+            [2, "Back (背部)", "拉力器下拉", "4 組", "10-12 次"],
+            [2, "Back (背部)", "槓鈴划船", "3 組", "8-10 次"],
+            [2, "Back (背部)", "反向飛鳥", "3 組", "10-12 次"],
+            [2, "Back (背部)", "掉重組：T-bar 划船", "1 組", "8-10 次，減重20% 1 組 x 10-12 次"],
+            [2, "Back (背部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [2, "Back (背部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [2, "Back (背部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [2, "Back (背部)", "有氧運動", "", "30分鐘"]
+        ],
+        3: [
+            [3, "Arms & Shoulders (手臂與肩部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [3, "Arms & Shoulders (手臂與肩部)", "槓鈴肩推", "4 組", "8-10 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "啞鈴側平舉", "4 組", "10-12 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "啞鈴交替彎舉", "3 組", "8-10 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "繩索三頭肌下壓", "3 組", "10-12 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [3, "Arms & Shoulders (手臂與肩部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [3, "Arms & Shoulders (手臂與肩部)", "有氧運動", "", "30分鐘"]
+        ],
+        4: [
+            [4, "Legs (腿部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [4, "Legs (腿部)", "槓鈴深蹲", "4 組", "8-10 次"],
+            [4, "Legs (腿部)", "腿舉機", "4 組", "10-12 次"],
+            [4, "Legs (腿部)", "腿彎舉", "3 組", "10-12 次"],
+            [4, "Legs (腿部)", "股肌訓練", "3 組", "10-12 次"],
+            [4, "Legs (腿部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [4, "Legs (腿部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [4, "Legs (腿部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [4, "Legs (腿部)", "有氧運動", "", "30分鐘"]
+        ],
+        5: [
+            [5, "Chest (胸部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [5, "Chest (胸部)", "槓鈴臥推", "4 組", "6-8 次"],
+            [5, "Chest (胸部)", "啞鈴飛鳥", "4 組", "10-12 次"],
+            [5, "Chest (胸部)", "坐姿器械推胸", "3 組", "8-10 次"],
+            [5, "Chest (胸部)", "繩索下壓", "3 組", "10-12 次"],
+            [5, "Chest (胸部)", "啞鈴傾斜臥推", "3 組", "8-10 次"],
+            [5, "Chest (胸部)", "胸部夾擊", "3 組", "10-12 次"],
+            [5, "Chest (胸部)", "掉重組：槓鈴臥推", "1 組", "6-8 次，減重20% 1 組 x 8-10 次"],
+            [5, "Chest (胸部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [5, "Chest (胸部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [5, "Chest (胸部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [5, "Chest (胸部)", "有氧運動", "", "30分鐘"]
+        ],
+        6: [
+            [6, "Back (背部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [6, "Back (背部)", "T-bar 划船", "4 組", "8-10 次"],
+            [6, "Back (背部)", "拉力器下拉", "4 組", "10-12 次"],
+            [6, "Back (背部)", "槓鈴划船", "3 組", "8-10 次"],
+            [6, "Back (背部)", "反向飛鳥", "3 組", "10-12 次"],
+            [6, "Back (背部)", "掉重組：T-bar 划船", "1 組", "8-10 次，減重20% 1 組 x 10-12 次"],
+            [6, "Back (背部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [6, "Back (背部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [6, "Back (背部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [6, "Back (背部)", "有氧運動", "", "30分鐘"]
+        ],
+        7: [
+            [7, "Arms & Shoulders (手臂與肩部)", "熱身：5-10分鐘的輕有氧運動", "", ""],
+            [7, "Arms & Shoulders (手臂與肩部)", "槓鈴肩推", "4 組", "8-10 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "啞鈱側平舉", "4 組", "10-12 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "啞鈴交替彎舉", "3 組", "8-10 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "繩索三頭肌下壓", "3 組", "10-12 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "橫腹肌訓練：平板支撐", "3 組", "30-60 秒"],
+            [7, "Arms & Shoulders (手臂與肩部)", "下腹訓練：反向捲腹", "3 組", "12-15 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "懸垂抬腿", "3 組", "10-12 次"],
+            [7, "Arms & Shoulders (手臂與肩部)", "有氧運動", "", "30分鐘"]
+        ]
+    };
+
+    let currentIndex = 0;
+    let countdownInterval; // Variable to hold the countdown interval
+    let selectedTrainingData = []; // To hold the selected day's training data
+
+    const welcomePage = document.getElementById('welcomePage');
+    const trainingCard = document.getElementById('trainingCard');
+    const countdownPage = document.getElementById('countdownPage');
+
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn-start')) {
+            const selectedDay = parseInt(document.getElementById('trainingDay').value, 10);
+            selectedTrainingData = trainingData[selectedDay]; // Get training data for the selected day
+            currentIndex = 0; // Start from the first item
+            showTraining(); // Show the first training item
+            welcomePage.style.display = 'none';
+            trainingCard.style.display = 'block';
+        } else if (e.target.classList.contains('btn-next')) {
+            const inputSeconds = parseInt(document.getElementById('inputSeconds').value, 10);
+            showCountdown(inputSeconds); // Show countdown page
+        }
+    });
+
+    function showTraining() {
+        if (currentIndex >= selectedTrainingData.length) {
+            trainingCard.innerHTML = `<h2>Training Complete!</h2>`;
+            countdownPage.style.display = 'none'; // Hide countdown page
+            return;
+        }
+
+        const row = selectedTrainingData[currentIndex];
+        trainingCard.innerHTML = `
+            <h2>${row[1]}</h2>
+            <p><strong>Weekday:</strong> ${row[0]}</p>
+            <p><strong>訓練內容:</strong> ${row[2]}</p>
+            <p><strong>動作:</strong> ${row[3]}</p>
+            <p><strong>組數:</strong> ${row[4]}</p>
+            <label for="inputSeconds">Countdown Seconds:</label>
+            <input type="number" id="inputSeconds" min="1" value="60">
+            <button class="btn btn-next">Next</button>
+        `;
+        countdownPage.style.display = 'none'; // Ensure countdown page is hidden
+        trainingCard.style.display = 'block'; // Show training card
+    }
+
+    function showCountdown(seconds) {
+        trainingCard.style.display = 'none'; // Hide training card
+        countdownPage.style.display = 'block'; // Show countdown page
+        countdownPage.innerHTML = `
+            <h2>Countdown in Progress</h2>
+            <p><strong>Time Remaining:</strong> <span id="countdown">${seconds}</span> seconds</p>
+        `;
+
+        let countdownDisplay = document.getElementById('countdown');
+        countdownDisplay.textContent = seconds; // Set countdown display
+        clearInterval(countdownInterval); // Clear any existing interval
+
+        countdownInterval = setInterval(() => {
+            seconds--;
+            countdownDisplay.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                currentIndex++; // Move to the next training item
+                showTraining(); // Show the next training item
+            }
+        }, 1000);
+    }
+</script>
+</body>
+</html>
